@@ -96,6 +96,9 @@ class ReactionRole(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, event: discord.RawReactionActionEvent):
+        if event.member.bot:
+            return
+
         config = self.bot.roles.get(event.guild_id, {})
 
         messages = config.get("reactionrole", {})
@@ -109,17 +112,17 @@ class ReactionRole(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, event: discord.RawReactionActionEvent):
+        guild = discord.utils.get(self.bot.guilds, id=event.guild_id)
+        member = discord.utils.get(guild.members, id=event.user_id)
+        if member is None or member.bot:
+            return
+
         config = self.bot.roles.get(event.guild_id, {})
 
         messages = config.get("reactionrole", {})
         roles = messages.get(str(event.message_id), {})
 
         if str(event.emoji) not in roles:
-            return
-
-        guild = discord.utils.get(self.bot.guilds, id=event.guild_id)
-        member = discord.utils.get(guild.members, id=event.user_id)
-        if member is None:
             return
 
         role = discord.Object(id=int(roles[str(event.emoji)]))
