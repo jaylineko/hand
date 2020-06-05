@@ -16,6 +16,7 @@ extensions = (
     "jishaku",
     "ext.autorole",
     "ext.meta",
+    "ext.reactionrole",
 )
 
 error_types = [
