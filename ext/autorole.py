@@ -38,17 +38,24 @@ class Autorole(commands.Cog):
     @autorole.command(name="set")
     @commands.cooldown(3, 30, commands.BucketType.guild)
     @commands.has_guild_permissions(manage_guild=True)
-    async def autorole_set(self, ctx: commands.Context, role: commands.RoleConverter):
+    async def autorole_set(
+        self, ctx: commands.Context, role: commands.RoleConverter = None
+    ):
         """Sets the role given to all members on join"""
 
         config = ctx.bot.roles.get(ctx.guild.id, {})
-        config["autorole"] = str(role.id)
+        if role:
+            config["autorole"] = str(role.id)
+        else:
+            del config["autorole"]
         ctx.bot.roles.put(ctx.guild.id, config)
 
         await ctx.send(
             embed=discord.Embed(
                 title="Autorole",
-                description=f"All members will now get {role.mention} on join",
+                description=f"All members will now get {role.mention} on join"
+                if role
+                else "Members will no longer get a role on join",
             )
         )
 
@@ -56,18 +63,23 @@ class Autorole(commands.Cog):
     @commands.cooldown(3, 30, commands.BucketType.guild)
     @commands.has_guild_permissions(manage_guild=True)
     async def autorole_set_bot(
-        self, ctx: commands.Context, role: commands.RoleConverter
+        self, ctx: commands.Context, role: commands.RoleConverter = None
     ):
         """Sets the role given to all bots on join"""
 
         config = ctx.bot.roles.get(ctx.guild.id, {})
-        config["autorole-bot"] = str(role.id)
+        if role:
+            config["autorole-bot"] = str(role.id)
+        else:
+            del config["autorole-bot"]
         ctx.bot.roles.put(ctx.guild.id, config)
 
         await ctx.send(
             embed=discord.Embed(
                 title="Autorole",
-                description=f"All bots will now get {role.mention} on join",
+                description=f"All bots will now get {role.mention} on join"
+                if role
+                else "Bots will no longer get a role on join",
             )
         )
 
