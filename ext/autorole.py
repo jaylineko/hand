@@ -41,7 +41,7 @@ class AutoRole(commands.Cog):
     async def autorole_set(
         self, ctx: commands.Context, role: commands.RoleConverter = None
     ):
-        """Sets the role given to all members on join"""
+        """Sets or unsets the role given to all members on join"""
 
         config = ctx.bot.roles.get(ctx.guild.id, {})
         if role:
@@ -65,7 +65,7 @@ class AutoRole(commands.Cog):
     async def autorole_set_bot(
         self, ctx: commands.Context, role: commands.RoleConverter = None
     ):
-        """Sets the role given to all bots on join"""
+        """Sets or unsets the role given to all bots on join"""
 
         config = ctx.bot.roles.get(ctx.guild.id, {})
         if role:
