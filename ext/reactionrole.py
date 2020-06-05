@@ -3,7 +3,7 @@ from discord.ext import commands
 
 
 class ReactionRole(commands.Cog):
-    """Autorole configuration"""
+    """Reaction role configuration"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -46,7 +46,7 @@ class ReactionRole(commands.Cog):
     @reactionrole.command(name="set", aliases=["add"])
     @commands.cooldown(3, 30, commands.BucketType.guild)
     @commands.has_guild_permissions(manage_guild=True)
-    async def autorole_set(
+    async def reactionrole_set(
         self,
         ctx: commands.Context,
         message: commands.MessageConverter,
