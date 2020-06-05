@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class Autorole(commands.Cog):
+class AutoRole(commands.Cog):
     """Autorole configuration"""
 
     def __init__(self, bot):
@@ -94,4 +94,4 @@ class Autorole(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Autorole(bot))
+    bot.add_cog(AutoRole(bot))
