@@ -14,6 +14,7 @@ environ.setdefault("JISHAKU_HIDE", "true")
 
 extensions = (
     "jishaku",
+    "ext.autorole",
     "ext.meta",
 )
 
@@ -40,6 +41,8 @@ class Bot(commands.AutoShardedBot):
         super().__init__(command_prefix=_prefix, description="Basic role bot")
 
         self.prefixes = config.Config("prefixes.json")
+
+        self.roles = config.Config("roles.json")
 
     async def on_ready(self):
         self.session = aiohttp.ClientSession()
