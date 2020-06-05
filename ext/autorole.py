@@ -52,14 +52,14 @@ class AutoRole(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Autorole",
+                title="Auto role",
                 description=f"All members will now get {role.mention} on join"
                 if role
                 else "Members will no longer get a role on join",
             )
         )
 
-    @autorole.command(name="set-bot", aliases=["set_bot"])
+    @autorole.command(name="set-bot")
     @commands.cooldown(3, 30, commands.BucketType.guild)
     @commands.has_guild_permissions(manage_guild=True)
     async def autorole_set_bot(
@@ -76,7 +76,7 @@ class AutoRole(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Autorole",
+                title="Auto role",
                 description=f"All bots will now get {role.mention} on join"
                 if role
                 else "Bots will no longer get a role on join",
