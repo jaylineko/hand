@@ -3,7 +3,7 @@ from discord.ext import commands
 
 
 class AutoRole(commands.Cog):
-    """Autorole configuration"""
+    """Auto role configuration"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -13,13 +13,13 @@ class AutoRole(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.guild)
     @commands.has_guild_permissions(manage_guild=True)
     async def autorole(self, ctx: commands.Context):
-        """Group of commands to manage autoroles configuration in this server"""
+        """Group of commands to manage auto roles configuration in this server"""
 
         config = ctx.bot.roles.get(ctx.guild.id, {})
 
         embed = discord.Embed(
-            title="Autorole",
-            description=f"Use `{ctx.prefix}help autorole` for more info"
+            title="Auto role",
+            description=f"Use `{ctx.prefix}help auto role` for more info"
             "\nCurrent configuration:",
         )
         embed.add_field(
