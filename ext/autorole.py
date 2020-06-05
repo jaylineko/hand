@@ -39,7 +39,7 @@ class AutoRole(commands.Cog):
     @commands.cooldown(3, 30, commands.BucketType.guild)
     @commands.has_guild_permissions(manage_guild=True)
     async def autorole_set(
-        self, ctx: commands.Context, role: commands.RoleConverter = None
+        self, ctx: commands.Context, *, role: commands.RoleConverter = None
     ):
         """Sets or unsets the role given to all members on join"""
 
@@ -63,7 +63,7 @@ class AutoRole(commands.Cog):
     @commands.cooldown(3, 30, commands.BucketType.guild)
     @commands.has_guild_permissions(manage_guild=True)
     async def autorole_set_bot(
-        self, ctx: commands.Context, role: commands.RoleConverter = None
+        self, ctx: commands.Context, *, role: commands.RoleConverter = None
     ):
         """Sets or unsets the role given to all bots on join"""
 

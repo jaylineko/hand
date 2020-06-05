@@ -51,6 +51,7 @@ class ReactionRole(commands.Cog):
         ctx: commands.Context,
         message: commands.MessageConverter,
         emoji: commands.EmojiConverter,
+        *,
         role: commands.RoleConverter = None,
     ):
         """Sets or unsets the role given to a member when they react to a message using an emoji"""
