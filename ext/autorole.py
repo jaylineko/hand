@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 
 class AutoRole(commands.Cog):
@@ -7,6 +7,7 @@ class AutoRole(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.add_roles.start()
         super().__init__()
 
     @commands.group(invoke_without_command=True)
@@ -91,6 +92,27 @@ class AutoRole(commands.Cog):
 
         if autorole:
             await member.add_roles(discord.Object(id=int(autorole)))
+
+    @tasks.loop(minutes=5.0)
+    async def add_roles(self):
+        for guild in self.bot.guilds:
+            guild_config = self.bot.roles.get(guild.id, {})
+
+            member_role, bot_role = tuple(
+                discord.Object(id=guild_config[key]) if key in guild_config else None
+                for key in ("autorole", "autorole-bot")
+            )
+
+            for member in guild.members:
+                role = member_role if not member.bot else bot_role
+                if role is None:
+                    continue
+
+                await member.add_roles(role)
+
+    @add_roles.before_loop
+    async def before_add_roles(self):
+        await self.bot.wait_until_ready()
 
 
 def setup(bot):
