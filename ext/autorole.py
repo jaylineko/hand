@@ -11,8 +11,7 @@ class AutoRole(commands.Cog):
         super().__init__()
 
     @commands.group(invoke_without_command=True)
-    @commands.cooldown(1, 3, commands.BucketType.guild)
-    @commands.has_guild_permissions(manage_guild=True)
+    @commands.cooldown(1, 3, commands.BucketType.channel)
     async def autorole(self, ctx: commands.Context):
         """Group of commands to manage auto-roles configuration in this server"""
 
@@ -38,7 +37,7 @@ class AutoRole(commands.Cog):
 
     @autorole.command(name="set")
     @commands.cooldown(3, 30, commands.BucketType.guild)
-    @commands.has_guild_permissions(manage_guild=True)
+    @commands.has_guild_permissions(manage_guild=True, manage_roles=True)
     async def autorole_set(
         self, ctx: commands.Context, *, role: commands.RoleConverter = None
     ):
@@ -62,7 +61,7 @@ class AutoRole(commands.Cog):
 
     @autorole.command(name="set-bot")
     @commands.cooldown(3, 30, commands.BucketType.guild)
-    @commands.has_guild_permissions(manage_guild=True)
+    @commands.has_guild_permissions(manage_guild=True, manage_roles=True)
     async def autorole_set_bot(
         self, ctx: commands.Context, *, role: commands.RoleConverter = None
     ):

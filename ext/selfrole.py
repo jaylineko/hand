@@ -12,8 +12,7 @@ class SelfRole(commands.Cog):
         super().__init__()
 
     @commands.group(invoke_without_command=True)
-    @commands.cooldown(1, 3, commands.BucketType.guild)
-    @commands.has_guild_permissions(manage_guild=True)
+    @commands.cooldown(1, 3, commands.BucketType.channel)
     async def reactionrole(self, ctx: commands.Context):
         """Group of commands to manage reaction roles configuration in this server"""
 
@@ -47,7 +46,7 @@ class SelfRole(commands.Cog):
 
     @reactionrole.command(name="set", aliases=["add"])
     @commands.cooldown(3, 30, commands.BucketType.guild)
-    @commands.has_guild_permissions(manage_guild=True)
+    @commands.has_guild_permissions(manage_guild=True, manage_roles=True)
     async def reactionrole_set(
         self,
         ctx: commands.Context,
