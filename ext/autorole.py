@@ -99,7 +99,9 @@ class AutoRole(commands.Cog):
             guild_config = self.bot.roles.get(guild.id, {})
 
             member_role, bot_role = tuple(
-                discord.Object(id=guild_config[key]) if key in guild_config else None
+                discord.Object(id=int(guild_config[key]))
+                if key in guild_config
+                else None
                 for key in ("autorole", "autorole-bot")
             )
 
@@ -108,7 +110,7 @@ class AutoRole(commands.Cog):
                 if role is None:
                     continue
 
-                if role not in member.roles:
+                if role.id not in [role.id for role in member.roles]:
                     await member.add_roles(role)
 
     @add_roles.before_loop
