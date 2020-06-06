@@ -61,15 +61,15 @@ class ReactionRole(commands.Cog):
         config = self.bot.roles.get(ctx.guild.id, {})
 
         messages = config.get("reactionrole", {})
-        if message.id not in messages:
+        if str(message.id) not in messages:
             if len(messages) >= 15:
                 raise commands.BadArgument(
                     message="Too many messages have reaction roles"
                 )
 
-            messages[message.id] = {"channel": message.channel.id}
+            messages[str(message.id)] = {"channel": message.channel.id}
 
-        roles = messages[message.id]
+        roles = messages[str(message.id)]
         if role:
             roles[str(emoji)] = str(role.id)
         else:
