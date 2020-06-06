@@ -74,6 +74,9 @@ class SelfRole(commands.Cog):
         else:
             del roles[str(emoji)]
 
+        if len(roles) == 0:
+            del messages[str(message.id)]
+
         config["reactionrole"] = messages
         self.bot.roles.put(ctx.guild.id, config)
 
