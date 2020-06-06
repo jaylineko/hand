@@ -3,7 +3,7 @@ from discord.ext import commands, tasks
 
 
 class AutoRole(commands.Cog):
-    """Auto role configuration"""
+    """Auto-role configuration"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -14,13 +14,13 @@ class AutoRole(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.guild)
     @commands.has_guild_permissions(manage_guild=True)
     async def autorole(self, ctx: commands.Context):
-        """Group of commands to manage auto roles configuration in this server"""
+        """Group of commands to manage auto-roles configuration in this server"""
 
         config = ctx.bot.roles.get(ctx.guild.id, {})
 
         embed = discord.Embed(
-            title="Auto role",
-            description=f"Use `{ctx.prefix}help auto role` for more info"
+            title="Auto-role",
+            description=f"Use `{ctx.prefix}help auto-role` for more info"
             "\nCurrent configuration:",
         )
         embed.add_field(
@@ -53,7 +53,7 @@ class AutoRole(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Auto role",
+                title="Auto-role",
                 description=f"All members will now get {role.mention} on join"
                 if role
                 else "Members will no longer get a role on join",
@@ -77,7 +77,7 @@ class AutoRole(commands.Cog):
 
         await ctx.send(
             embed=discord.Embed(
-                title="Auto role",
+                title="Auto-role",
                 description=f"All bots will now get {role.mention} on join"
                 if role
                 else "Bots will no longer get a role on join",

@@ -4,8 +4,8 @@ from discord.ext import commands
 from .utils import converter
 
 
-class ReactionRole(commands.Cog):
-    """Reaction role configuration"""
+class SelfRole(commands.Cog):
+    """Self-role configuration"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -132,4 +132,4 @@ class ReactionRole(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(ReactionRole(bot))
+    bot.add_cog(SelfRole(bot))
