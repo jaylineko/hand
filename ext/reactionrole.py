@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+from .utils import converter
+
 
 class ReactionRole(commands.Cog):
     """Reaction role configuration"""
@@ -50,7 +52,7 @@ class ReactionRole(commands.Cog):
         self,
         ctx: commands.Context,
         message: commands.MessageConverter,
-        emoji: commands.EmojiConverter,
+        emoji: converter.EmojiConverter,
         *,
         role: commands.RoleConverter = None,
     ):

@@ -8,7 +8,7 @@ import aiohttp
 import discord
 from discord.ext import commands
 
-from utils import config
+from ext.utils import config
 
 environ.setdefault("JISHAKU_HIDE", "true")
 
