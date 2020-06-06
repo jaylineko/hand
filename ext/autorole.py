@@ -108,7 +108,8 @@ class AutoRole(commands.Cog):
                 if role is None:
                     continue
 
-                await member.add_roles(role)
+                if role not in member.roles:
+                    await member.add_roles(role)
 
     @add_roles.before_loop
     async def before_add_roles(self):
