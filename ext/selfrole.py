@@ -268,7 +268,7 @@ class SelfRole(commands.Cog):
                 member.guild.roles, name="Hand: colour roles"
             )
             if pivot_role:
-                await role.edit(position=pivot_role.position + 1)
+                await role.edit(position=pivot_role.position - 1)
 
             guild_config.get("colour", {})["roles"] = [*managed_roles, str(role.id)]
             self.bot.roles.put(member.guild.id, guild_config)
