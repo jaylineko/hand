@@ -71,7 +71,7 @@ class SelfRole(commands.Cog):
         roles = messages[str(message.id)]
         if role:
             roles[str(emoji)] = str(role.id)
-        else:
+        elif str(emoji) in roles:
             del roles[str(emoji)]
 
         if len(roles) == 0:
