@@ -170,8 +170,12 @@ class SelfRole(commands.Cog):
 
         if enabled:
             del config["colour"]
+            pivot_role = discord.utils.get(ctx.guild.roles, name="Hand: colour roles")
+            if pivot_role:
+                await pivot_role.delete()
         else:
             config["colour"] = {}
+            await ctx.guild.create_role(name="Hand: colour roles")
 
         ctx.bot.roles.put(ctx.guild.id, config)
 
@@ -259,6 +263,13 @@ class SelfRole(commands.Cog):
 
         if role is None:
             role = await member.guild.create_role(name=name, colour=colour)
+
+            pivot_role = discord.utils.get(
+                member.guild.roles, name="Hand: colour roles"
+            )
+            if pivot_role:
+                await role.edit(position=pivot_role.position + 1)
+
             guild_config.get("colour", {})["roles"] = [*managed_roles, str(role.id)]
             self.bot.roles.put(member.guild.id, guild_config)
 
