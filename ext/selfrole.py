@@ -74,7 +74,7 @@ class SelfRole(commands.Cog):
         elif str(emoji) in roles:
             del roles[str(emoji)]
 
-        if len(roles) == 0:
+        if len(roles) == 1:
             del messages[str(message.id)]
 
         config["reactionrole"] = messages
