@@ -39,7 +39,11 @@ def _prefix(bot, msg):
 
 class Bot(commands.AutoShardedBot):
     def __init__(self,):
-        super().__init__(command_prefix=_prefix, description="Basic role bot")
+        super().__init__(
+            command_prefix=_prefix,
+            description="Basic role bot",
+            activity=discord.Game(name="with roles - 'help"),
+        )
 
         self.prefixes = config.Config("prefixes.json")
 
