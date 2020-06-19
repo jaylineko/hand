@@ -19,7 +19,7 @@ class AutoRole(commands.Cog):
 
         embed = discord.Embed(
             title="Auto-role",
-            description=f"Use `{ctx.prefix}help auto-role` for more info"
+            description=f"Use `{ctx.prefix}help autorole` for more info"
             "\nCurrent configuration:",
         )
         embed.add_field(
