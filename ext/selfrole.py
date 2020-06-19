@@ -329,6 +329,33 @@ class SelfRole(commands.Cog):
             )
         )
 
+    @colour.command(name="unset", aliases=["remove"])
+    @commands.cooldown(3, 30, commands.BucketType.guild)
+    @commands.bot_has_permissions(manage_roles=True)
+    async def colour_unset(
+        self, ctx: commands.Context,
+    ):
+        """Unsets your current colour, shortcut for `colour set`"""
+
+        config = ctx.bot.roles.get(ctx.guild.id, {})
+        colour_config = config.get("colour", None)
+
+        if colour_config is None:
+            await ctx.send(
+                embed=discord.Embed(
+                    title="Colour role", description=f"Colour roles are disabled",
+                )
+            )
+            return
+
+        await self._unset_colour(ctx.author)
+        await ctx.send(
+            embed=discord.Embed(
+                title="Colour role", description="You no longer have a colour role",
+            )
+        )
+        return
+
 
 def setup(bot):
     bot.add_cog(SelfRole(bot))
